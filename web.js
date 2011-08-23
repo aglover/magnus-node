@@ -4,7 +4,7 @@ var app = express.createServer(express.logger());
 app.use(express.bodyParser());
 
 app.put('/', function(req, res) {
-  console.log(req.body.account);
+  console.log(req.body.deal_descrption);
   res.send('Hello World!');
 });
 
