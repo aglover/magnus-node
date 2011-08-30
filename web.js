@@ -9,8 +9,13 @@ var app = express.createServer(express.logger());
 app.use(express.bodyParser());
 
 app.put('/', function(req, res) {
-  console.log(req.body.deal_description);
-  res.send('ack');
+  var deal = req.body.deal_description;
+  var tags = req.body.all_tags;
+
+  console.log("deal is : "  + deal + " and tags are " + tags);
+  
+  res.contentType('json');
+  res.send(JSON.stringify({ status: "success" }));
 });
 
 var port = process.env.PORT || 3000;
