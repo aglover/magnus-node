@@ -4,6 +4,9 @@
  *
  */
 var express = require('express');
+var mongolian = require("mongolian");
+
+var db = new mongolian("mongo://magnus:magnus@flame.mongohq.com:27054/magnus");
 
 var app = express.createServer(express.logger());
 app.use(express.bodyParser());
@@ -14,6 +17,12 @@ app.put('/', function(req, res) {
 
   console.log("deal is : "  + deal + " and tags are " + tags);
   
+  
+  db.collection("deals").insert({
+     deal: deal,
+     deal_tags: tags.split(",")
+  })
+	
   res.contentType('json');
   res.send(JSON.stringify({ status: "success" }));
 });
